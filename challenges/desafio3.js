@@ -7,7 +7,11 @@ db.produtos.updateMany(
 );
 
 db.produtos.updateMany(
-  {},
+  {
+    tags: {
+      $in: ["bovino"],
+    },
+  },
   { $inc: {
       avaliacao: +5,
     },
