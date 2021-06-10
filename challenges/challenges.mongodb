@@ -1,0 +1,267 @@
+use('commerce');
+db.produtos.find(
+  {}
+);
+
+
+db.produtos.updateMany(
+  {},
+  { $set: {
+    criadoPor: "Ronald McDonald"
+  } }
+);
+
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, criadoPor: 1 }
+);
+
+//desafio 2
+
+use('commerce');
+db.produtos.updateMany(
+  { valorUnitario: { $exists: false } },
+  {
+    $set: { valorUnitario: NumberDecimal("0.00") }
+  }
+);
+
+use('commerce')
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, valorUnitario: 1 }
+);
+
+//desafio 3
+
+use('commerce');
+db.produtos.updateMany(
+  { tags },
+  {
+    $set: { avaliacao: NumberInt("0") }
+  }
+);
+
+use('commerce');
+db.produtos.updateMany(
+  { tags: "bovino" },
+  { $inc: { avaliacao: 5 } }
+);
+
+use("commerce")
+db.produtos.updateMany(
+  { tags: "ave" },
+  { $inc: { avaliacao: 3 } }
+);
+
+use("commerce");
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, avaliacao: 1 }
+);
+
+//desafio 4
+
+use("commerce");
+db.produtos.updateOne(
+  { nome: "Big Mac" },
+  { $currentDate: { ultimaModificacao: { $type: "date" } } }
+);
+
+use("commerce");
+db.produtos.find(
+  { ultimaModificacao: { $exists: 1 } }
+);
+
+//desafio 5
+
+use("commerce");
+db.produtos.updateMany(
+  { 
+    $and: [
+      { nome: { $ne: "McChicken" } },
+      { ingredientes: { $ne: "ketchup" } }
+    ]
+  },
+  {
+    $push: {
+      ingredientes: "ketchup"
+    }
+  }
+);
+
+db.produtos.find(
+  {},
+  { _id: 0 nome: 1, ingredientes: 1 }
+);
+
+// //desafio 6
+// 6 - Inclua bacon no final da lista de ingredientes dos sanduíches Big Mac e Quarteirão com Queijo.
+// Para isso, escreva no arquivo desafio6.js duas queries, nesta ordem:
+
+// Crie uma query que faça a inclusão de bacon no final da lista de ingredientes dos sanduíches Big Mac e Quarteirão com Queijo.
+
+// Crie uma query que retorne o nome e ingredientes de todos os documentos.
+
+use("commerce");
+db.produtos.updateMany(
+  { 
+    $or: [
+      { nome: "Big Mac" }, { nome: "Quarteirão com Queijo" }
+    ]
+  },
+  {
+    $push: {
+      ingredientes: "bacon"
+    }
+  }
+);
+
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, ingredientes: 1 }
+);
+
+// 7 - Remova o item cebola de todos os sanduíches.
+// Para isso, escreva no arquivo desafio7.js duas queries, nesta ordem:
+
+// Crie uma query que faça a remoção do item cebola em todos os sanduíches.
+
+// Crie uma query que retorne o nome e ingredientes de todos os documentos.
+
+use("commerce");
+db.produtos.updateMany(
+  {},
+  {
+    $pull: {
+      ingredientes: "cebola"
+    }
+  }
+);
+
+use("commerce");
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, ingredientes: 1 }
+);
+
+// 8 - Remova o primeiro ingrediente do sanduíche Quarteirão com Queijo.
+// Para isso, escreva no arquivo desafio8.js duas queries, nesta ordem:
+
+// Crie uma query que faça a remoção do primeiro ingrediente no sanduíche Quarteirão com Queijo.
+
+// Crie uma query que retorne o nome e ingredientes de todos os documentos.
+
+use("commerce");
+db.produtos.updateOne(
+  { nome: "Quarteirão com Queijo" },
+  {
+    $pop: { ingredientes: -1 }
+  }
+);
+
+use("commerce");
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, ingredientes: 1 }
+);
+
+// 9 - Remova o último ingrediente do sanduíche Cheddar McMelt.
+// Para isso, escreva no arquivo desafio9.js duas queries, nesta ordem:
+
+// Crie uma query que faça a remoção do último ingrediente no sanduíche Cheddar McMelt.
+
+// Crie uma query que retorne o nome e ingredientes de todos os documentos.
+
+db.produtos.updateOne(
+  { nome: "Cheddar McMelt" },
+  {
+    $pop: { ingredientes: 1 },
+  },
+);
+
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, ingredientes: 1 },
+);
+
+// 10 - Adicione a quantidade de vendas dos sanduíches por dia da semana.
+// Para isso, escreva no arquivo desafio10.js quatro queries, nesta ordem:
+
+// Crie uma query que inclua um array com sete posições em todos os sanduíches. Cada uma delas representará um dia da semana, e cada posição iniciará em 0. O array deve se parecer como abaixo:
+// "vendasPorDia": [0, 0, 0, 0, 0, 0, 0]
+// O primeiro item desse array representa as vendas no domingo, o segundo item representa as vendas na segunda-feira, e assim até chegar ao último item, que representa as vendas no sábado.
+// Crie uma query que incremente as vendas de Big Mac às quartas-feiras em 60.
+
+// Crie uma query que incremente as vendas de todos os sanduíches de carne do tipo bovino e pão aos sábados em 120.
+
+// Crie uma query que retorne o nome e vendasPorDia de todos os documento
+
+use("commerce");
+db.produtos.updateMany(
+  {},
+  { $set: { vendasPorDia: [0, 0, 0, 0, 0, 0, 0] } }
+);
+
+use("commerce");
+db.produtos.updateOne(
+  { nome: "Big Mac" },
+  { $inc: { "vendasPorDia.3": 60 } }
+);
+
+use("commerce");
+db.produtos.updateOne(
+  { tags: { $all: ["bovino", "pão"] } },
+  {
+    $inc: { "vendasPorDia.6": 120 }
+  }
+)
+
+use("commerce");
+db.produtos.find({}, { _id: 0, nome: 1, vendasPorDia: 1 })
+
+// 11 - Insira os elementos combo e tasty no array tags de todos os sanduíches e aproveite para deixar os elementos em ordem alfabética ascendente.
+// Para isso, escreva no arquivo desafio11.js duas queries, nesta ordem:
+
+// Crie uma query que faça tanto a inserção dos elementos combo e tasty no array tags de todos os sanduíches quanto a ordenação dos elementos de tags em ordem alfabética ascendente.
+
+// Crie uma query que retorne o nome e tags de todos os documentos.
+
+use("commerce");
+db.produtos.updateMany(
+  {},
+  {
+    $push: {
+      tags: {
+        $each: ["combo", "tasty"],
+        $sort: 1,
+      }
+    }
+  }
+);
+
+use("commerce");
+db.produtos.find({}, { _id: 0, nome: 1, tags: 1 });
+
+// 12 - Ordene em todos os documentos os elementos do array valoresNutricionais pelo campo percentual de forma descendente.
+// Para isso, escreva no arquivo desafio12.js duas queries, nesta ordem:
+
+// Crie uma query que faça em todos os documentos a ordenação dos elementos do array valoresNutricionais pelo campo percentual de forma descendente. Dica: mesmo sem adicionar nenhum novo elemento, para essa operação é necessário utilizar também o modificador $each.
+
+// Crie uma query que retorne o nome e valoresNutricionais de todos os documentos.
+
+use("commerce");
+db.produtos.updateMany(
+  {},
+  {
+    $push: {
+      valoresNutricionais: {
+        $each: [],
+        $sort: { percentual: -1 }
+      }
+    }
+  }
+);
+
+use("commerce");
+db.produtos.find({}, { _id: 0, nome: 1, valoresNutricionais: 1 });
