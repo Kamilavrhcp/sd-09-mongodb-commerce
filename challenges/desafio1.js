@@ -6,6 +6,7 @@ db.produtos.updateMany(
   {},
   { $set: { criadoPor: "Ronald McDonald" } },
 );
+
 // Crie uma query que retorne o nome e criadoPor de todos os produtos.
 db.produtos.find(
   {},

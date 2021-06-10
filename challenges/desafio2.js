@@ -6,6 +6,7 @@ db.produtos.updateMany(
   { valorUnitario: { $exists: 0 } },
   { $set: { valorUnitario: NumberDecimal("0.00") } },
 );
+
 // Crie uma query que retorne o nome e valorUnitario de todos os produtos.
 db.produtos.find(
   {},

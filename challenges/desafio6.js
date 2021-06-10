@@ -6,6 +6,7 @@ db.produtos.updateMany(
   { nome: { $in: ["Big Mac", "Quarteirão com Queijo"] } },
   { $push: { ingredientes: "bacon" } },
 );
+
 // Crie uma query que retorne o nome e ingredientes de todos os documentos.
 db.produtos.find(
   {},

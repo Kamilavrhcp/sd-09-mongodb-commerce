@@ -6,6 +6,7 @@ db.produtos.updateOne(
   { nome: "Cheddar McMelt" },
   { $pop: { ingredientes: 1 } },
 );
+
 // Crie uma query que retorne o nome e ingredientes de todos os documentos.
 db.produtos.find(
   {},
