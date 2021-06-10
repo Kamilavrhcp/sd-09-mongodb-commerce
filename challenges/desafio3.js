@@ -1,6 +1,6 @@
 db.produtos.updateMany(
   {},
-  { $addToSet: { avaliacao: NumberInt("0") } },
+  { $set: { avaliacao: NumberInt("0") } },
 );
 db.produtos.updateMany(
   { tags: "bovino" },
