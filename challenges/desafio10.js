@@ -1,3 +1,6 @@
+db.produtos.updateMany({},
+  { $set: { vendasPorDia: [0, 0, 0, 0, 0, 0, 0] } });
+
 db.produtos.updateMany({ nome: "Big Mac" },
   { $inc: { "vendasPorDia.3": 60 } });
 
