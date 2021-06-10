@@ -1,7 +1,7 @@
 // 4 - Atribua a data corrente ao campo ultimaModificacao no sanduíche Big Mac.
 // Para isso, escreva no arquivo desafio4.js duas queries, nesta ordem:
 // Crie uma query que atribua a data corrente ao campo ultimaModificacao no sanduíche Big Mac. Para a data corrente faça uso do tipo Date.
-db.produtos.update(
+db.produtos.updateOne(
   { nome: "Big Mac" },
   { $currentDate: { ultimaModificacao: { $type: "date" } } },
 );
