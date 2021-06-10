@@ -1,0 +1,1 @@
+db.produtos.countDocuments({ $text: { $search: "\"feito com\"" } });
