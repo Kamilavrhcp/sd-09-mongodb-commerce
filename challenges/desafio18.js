@@ -5,5 +5,5 @@ db.produtos.createIndex(
 );
 
 db.produtos.countDocuments(
-  { $text: { $search: "frango hamburguer" } },
+  { $text: { $search: "\"feito com\"" } },
 );
