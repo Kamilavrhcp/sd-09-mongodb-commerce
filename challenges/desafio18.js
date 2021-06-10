@@ -6,7 +6,7 @@ db.produtos.createIndex(
 db.produtos.countDocuments(
   {
     $text: {
-      $search: "",
+      $search: "feito com",
     },
   },
 );
