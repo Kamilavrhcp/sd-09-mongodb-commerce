@@ -265,3 +265,96 @@ db.produtos.updateMany(
 
 use("commerce");
 db.produtos.find({}, { _id: 0, nome: 1, valoresNutricionais: 1 });
+
+// 13 - Adicione o elemento muito sódio ao final do array tags nos produtos em que o percentual de sódio seja maior ou igual a 40.
+// Para isso, escreva no arquivo desafio13.js duas queries, nesta ordem:
+
+// Crie uma query que faça a adição do elemento muito sódio ao final do array tags nos produtos em que o percentual de sódio seja maior ou igual a 40.
+
+// Crie uma query que retorne o nome e tags de todos os documentos.
+
+use("commerce");
+db.produtos.updateMany(
+  { 
+    valoresNutricionais: {
+      $elemMatch: {
+        tipo: "sódio",
+        percentual: { $gte: 40 }
+      }
+    }
+  },
+  {
+    $push: {
+      tags: "muito sódio"
+    }
+  }
+);
+
+use("commerce");
+db.produtos.find({}, { _id: 0, nome: 1, tags: 1 });
+
+// 14 - Adicione o elemento contém sódio ao final do array tags nos produtos em que o percentual de sódio seja maior do que 20 e menor do que 40.
+// Para isso, escreva no arquivo desafio14.js duas queries, nesta ordem:
+
+// Crie uma query que faça a adição do elemento contém sódio ao final do array tags nos produtos em que o percentual de sódio seja maior do que 20 e menor do que 40.
+
+// Crie uma query que retorne o nome e tags de todos os documentos.
+
+use("commerce");
+db.produtos.updateMany(
+  { 
+    valoresNutricionais: {
+      $elemMatch: {
+        tipo: "sódio",
+        percentual: { $gt: 20, $lt: 40 }
+      }
+    }
+  },
+  {
+    $push: {
+      tags: "contém sódio"
+    }
+  }
+);
+
+use("commerce");
+db.produtos.find({}, { _id: 0, nome: 1, tags: 1 });
+
+// 15 - Conte quantos produtos contêm Mc no nome, sem considerar letras maiúsculas ou minúsculas.
+
+use("commerce");
+db.produtos.countDocuments({ nome: { $regex: /.?Mc.?/ } })
+
+use("commerce");
+db.produtos.find({}, {nome: 1, _id: 0})
+
+//16 - Conte quantos produtos têm 4 ingredientes.
+
+use("commerce");
+db.produtos.countDocuments({ingredientes: { $size: 4 }})
+
+// 17 - Conte quantos documentos contêm as palavras frango e hamburguer utilizando o operador $text.
+// Para isso, escreva no arquivo desafio17.js duas queries, nesta ordem:
+
+// Crie uma query que faça a criação de um índice do tipo text no campo descricao com o idioma padrão portuguese.
+
+// Crie uma query que retorne a quantidade de documentos que contêm as palavras frango e hamburguer utilizando o operador $text.
+
+use("commerce")
+db.produtos.createIndex({ ingredientes: "text" });
+
+use("commerce");
+db.produtos.countDocuments({ 
+  $text: {
+    $search: "Hamburguer"
+  }
+});
+
+use("commerce");
+db.produtos.find({ 
+  $text: {
+    $search: "frango Hamburguer"
+  }
+ },
+ { _id: 0, ingredientes: 1 }
+ )
