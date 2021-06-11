@@ -1,11 +1,11 @@
 db.produtos.createIndex(
   { descricao: "text" },
+  { default_language: "portuguese" },
 );
 db.produtos.countDocuments(
   {
-    descricao: {
-      $search: "frango hambuguer",
-      $language: "pt",
+    $text: {
+      $search: "frango hamburguer",
     },
   },
 );
