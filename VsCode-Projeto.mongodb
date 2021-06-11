@@ -1,0 +1,50 @@
+use('commerce');
+db.produtos.find();
+
+// 1
+
+use('commerce');
+db.produtos.updateMany(
+  {},
+  { $set: { criadoPor: "Ronald McDonald"} }
+);
+
+use('commerce');
+db.produtos.find(
+  {},
+  { _id: 0, nome: 1, criadoPor: 1}
+);
+
+// 2
+
+use('commerce');
+db.produtos.updateMany(
+  {}, 
+  { $set: { valorUnitario: NumberDecimal("0.00") } },
+);
+
+use('commerce');
+db.produtos.find(
+  {},
+  { nome: 1, valorUnitario: 1, _id: 0 }
+);
+
+// 3
+
+use('commerce');
+db.produtos.updateMany(
+  {},
+  { $set: { avaliacao: NumberInt("0")} }
+);
+
+use('commerce');
+db.produtos.updateMany(
+  { tags: {$eq: "bovino"} },
+  { $inc: { avaliacao: 5 } }
+);
+
+use('commerce');
+db.produtos.updateMany(
+  { tags: {$eq: "ave"} },
+  { $inc: { avaliacao: 3 } }
+);
