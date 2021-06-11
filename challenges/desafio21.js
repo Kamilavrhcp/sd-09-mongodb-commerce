@@ -1,0 +1,1 @@
+db.produtos.find({ $expr: { $lt: ["$vendidos", "$curtidas"] } }, { nome: 1, _id: 0 });
