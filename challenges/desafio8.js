@@ -1,4 +1,4 @@
-db.produtos.updateMany(
+db.produtos.update(
   {},
   { $pop: { ingredientes: -1 } },
 );
