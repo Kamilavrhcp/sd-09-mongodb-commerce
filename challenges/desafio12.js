@@ -8,12 +8,12 @@ db.produtos.updateMany({}, {
 
 db.produtos.find({}, { _id: false, nome: true, valoresNutricionais: true });
 
-/*db.produtos.updateMany({}, {
-  $push: {
-    valoresNutricionais: {
-      $each: [], $sort: { percentual: -1 },
-    },
-  },
-});
-
-db.produtos.find({}, { _id: false, nome: true, valoresNutricionais: true });*/
+//db.produtos.updateMany({}, {
+//$push: {
+//    valoresNutricionais: {
+//      $each: [], $sort: { percentual: -1 },
+//    },
+//  },
+//});
+//
+//db.produtos.find({}, { _id: false, nome: true, valoresNutricionais: true });*/
