@@ -1,2 +1,2 @@
 db.produtos.createIndex({ descricao: "text" });
-db.produtos.countDocuments({ $text: { $search: "frango hamburguer" } });
+db.produtos.count({ $text: { $search: "frango hamburguer" } });
