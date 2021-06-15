@@ -7,7 +7,7 @@ db.produtos.updateOne(
   { $push: { $each: [{ $inc: { vendasPorDia: 60 } }] }, $position: 4 },
 );
 
-db.produtos.updateMany(
+db.produtos.updateOne(
   { $all: { tags: { $in: ["bovino", "pão"] } } },
   { $push: { $each: [{ $inc: { vendasPorDia: 120 } }] }, $position: 7 },
 );
