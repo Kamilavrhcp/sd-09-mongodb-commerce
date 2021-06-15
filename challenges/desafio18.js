@@ -9,3 +9,5 @@ db.produtos.countDocuments({
     $search: "feito com",
   },
 });
+
+// 80%
