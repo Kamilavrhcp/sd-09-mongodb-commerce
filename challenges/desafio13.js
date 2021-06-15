@@ -1,0 +1,13 @@
+db.produtos.updateMany(
+  {
+    valoresNutricionais: {
+      $elemMacth: {
+        tipo: "sódio",
+        percentual: { $gte: 40 },
+      },
+    },
+  },
+  { $push: { tages: "muito sódio" } },
+);
+
+db.produtos.find({}, { _id: 0, nome: 1, tags: 1 }).pretty();
