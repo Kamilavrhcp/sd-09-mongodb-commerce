@@ -1,4 +1,4 @@
-db.prosutos.updateMany(
+db.produtos.updateMany(
   {
     valoresNutricionais: {
       $elemMatch: {
