@@ -1,3 +1,1 @@
-db.produtos.find({ nome: { $regex: /^Mc/i } }).count();
-
-// não passou
+db.produtos.find({ nome: { $regex: /Mc/i } }).count();
