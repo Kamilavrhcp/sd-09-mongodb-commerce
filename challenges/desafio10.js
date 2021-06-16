@@ -3,11 +3,11 @@ db.produtos.updateMany(
   {
     $push: {
       vendasPorDia: { $each: [0, 0, 0, 0, 0, 0, 0] },
-    }
-  }
+    },
+  },
 );
 
-db.produtos.updateOne({ nome: "Big Mac" }, { $set: { "vendasPorDia.3": 60 } })
+db.produtos.updateOne({ nome: "Big Mac" }, { $set: { "vendasPorDia.3": 60 } });
 
 db.produtos.updateMany(
   { tags: { $all: ["bovino", "pão"] } },
