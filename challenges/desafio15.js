@@ -1,3 +1,3 @@
 db.produtos.find(
-  { nome: { $regex: /Mc/ } }
+  { nome: { $regex: /Mc/ } },
 ).count();
