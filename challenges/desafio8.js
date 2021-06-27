@@ -1,6 +1,12 @@
+// https://stackoverflow.com/questions/7227890/how-to-delete-n-th-element-of-array-in-mongodb
 db.produtos.updateOne(
-  {},
-  { $pull: { "ingredientes.1": {} } },
+  { nome: "Quarteirão com Queijo" },
+  { $pull: { $unset: { "ingredientes.1": "" } } },
+);
+
+db.produtos.updateOne(
+  { nome: "Quarteirão com Queijo" },
+  { $pull: { $pull: { ingredientes: null } } },
 );
 
 db.produtos.find(
