@@ -1,13 +1,9 @@
-// https://stackoverflow.com/questions/7227890/how-to-delete-n-th-element-of-array-in-mongodb
+// https://docs.mongodb.com/manual/reference/operator/update/pop/
 db.produtos.updateOne(
   { nome: "Quarteirão com Queijo" },
-  { $pull: { $unset: { "ingredientes.1": "" } } },
+  { $pop: { ingredientes: -1 } },
 );
-
-db.produtos.updateOne(
-  { nome: "Quarteirão com Queijo" },
-  { $pull: { $pull: { ingredientes: null } } },
-);
+// There is no straight way to do it with other index values
 
 db.produtos.find(
   {},
