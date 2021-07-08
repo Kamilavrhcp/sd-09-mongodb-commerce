@@ -1,4 +1,4 @@
-db.produtos.updateMany({}, { $push: { vendasPorDia: { $each: [0, 0, 0, 0, 0, 0, 0] } } });
+db.produtos.updateMany({}, { $push: { vendasPorDia: { $each: [0, 0, 0, 0, 0, 0, 0] } } }); // NumberInt("0") talvez, tb nao sei se faria diferenca
 // db.produtos.updateMany( {}, { $set: { vendasPorDia: [0, 0, 0, 0, 0, 0, 0] } }); | diferenca? nao faco a minima ideia...
 
 db.produtos.updateMany({ nome: "Big Mac" }, { $set: { "vendasPorDia.3": 60 } });
