@@ -14,5 +14,5 @@ db.produtos.updateMany(
 
 db.produtos.find(
   {},
-  { nome: true, tags: true, _id: false },
+  { nome: 1, tags: 1, _id: 0 },
 );
