@@ -48,9 +48,7 @@ A ideia foi trabalhar com o banco de dados `commerce`, que contém dados do card
 
 Temos, neste projeto, uma série de desafios com diferentes níveis de complexidade. Cada desafio foi resolvido em seu arquivo próprio.
 
-1. Leia a pergunta e crie no diretório `challenges` um arquivo chamado `desafioN.js`, em que N é o número do desafio.
-
-2. O arquivo há apenas o código MQL (_Mongo Query Language_) do desafio resolvido. Como no exemplo a seguir:
+O arquivo há apenas o código MQL (_Mongo Query Language_) do desafio resolvido. Como no exemplo a seguir:
 
    ```js
    db.produtos.find();
